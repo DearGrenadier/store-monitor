@@ -18,10 +18,15 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
+# Authentication solution
+gem 'devise', '4.0.0.rc1'
+# Temaplte engine
+gem 'slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do
