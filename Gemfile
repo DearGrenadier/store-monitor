@@ -22,6 +22,9 @@ gem 'capistrano-rails', group: :development
 gem 'devise', '4.0.0.rc1'
 # Temaplte engine
 gem 'slim'
+# Admin panel
+gem 'activeadmin', github: 'activeadmin'
+gem 'formtastic', github: 'justinfrench/formtastic'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
