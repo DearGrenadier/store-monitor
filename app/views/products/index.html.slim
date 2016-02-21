@@ -1,16 +1,15 @@
-.container
-  .row
-    = form_for @order, url: orders_confirmation_path do |f|
-      .col-md-8.col-md-offset-2
-        table.table.table-striped
-          thead
-            td Наименование
-            td Цена за еденицу(руб.)
-            td Наличие
-            td
-              = f.submit 'Заказать', class: 'btn btn-success'
-          tbody
-            - @products.each do |product|
-              - line_item = LineItem.new(product_id: product.id)
-              = f.fields_for :line_items, line_item do |ff|
-                = render partial: 'product', locals: {ff: ff, product: product}
+.row
+  = form_for @order, url: orders_confirmation_path do |f|
+    .col-md-8.col-md-offset-2
+      table.table.table-striped.table-bordered
+        thead
+          th Наименование
+          th Цена за еденицу(руб.)
+          th Наличие
+          th
+            = f.submit 'Заказать', class: 'btn btn-primary btn-block'
+        tbody
+          - @products.each do |product|
+            - line_item = LineItem.new(product_id: product.id)
+            = f.fields_for :line_items, line_item do |ff|
+              = render partial: 'product', locals: {ff: ff, product: product}

@@ -1,0 +1,9 @@
+tr
+  td
+    = order.created_at
+  td
+    = order.total_price
+  td
+    = order.status
+  td
+    = link_to 'Подробнее', order_path(order.id), class: 'btn btn-info'
