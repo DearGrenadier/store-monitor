@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      = form_for @order do |f|
+        = f.hidden_field :id
+        ul.list-group
+          - @order.line_items.each do |line_item|
+            li.list-group-item
+              = line_item.product.name
+              span.badge
+                = "#{line_item.quantity} x #{line_item.product.price}"
+          li.list-group-item.active
+            = "Общая стоимость - #{@order.total_price}"
+          li.list-group-item
+            = link_to 'Отклонить', root_path, class: 'btn btn-warning'
+            = f.submit 'Подтвердить', class: 'btn btn-success'

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'products/index'
+  resources :line_items, only: [:create]
+  resources :orders, except: [:new, :destroy, :edit]
+  post 'orders/confirmation'
+  resources :products, only: [:index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
