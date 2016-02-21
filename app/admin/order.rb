@@ -13,5 +13,4 @@ ActiveAdmin.register Order do
 #   permitted
 # end
 
-
 end
