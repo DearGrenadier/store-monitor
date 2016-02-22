@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       new_quantity = line_item.product.quantity - line_item.quantity
       line_item.product.update(quantity: new_quantity)
     end
-    @order.pending!
+    @order.confirmed!
     redirect_to root_path
   end
 

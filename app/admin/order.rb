@@ -36,4 +36,9 @@ ActiveAdmin.register Order do
     actions
   end
 
+  show do
+    attributes_table do
+      render 'show'
+    end
+  end
 end

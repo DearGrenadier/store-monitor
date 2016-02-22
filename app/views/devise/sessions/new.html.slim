@@ -1,0 +1,19 @@
+.row
+  .col-md-4.col-md-offset-4
+    = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+      .form-group
+        label Email
+        = f.text_field :email, class: 'form-control', placeholder: 'example@example.com'
+      .form-group
+        label
+          | Пароль
+        = f.password_field :password, class: 'form-control', autocomplete: 'off'
+      - if devise_mapping.rememberable?
+        .form-group
+          .checkbox
+            label
+              = f.check_box :remember_me
+              | Запомнить меня
+      .form-group
+        = f.submit 'Войти', class: 'btn btn-info'
+        = link_to "Забыли пароль?", new_password_path(resource_name), style: 'margin-left: 180px'
