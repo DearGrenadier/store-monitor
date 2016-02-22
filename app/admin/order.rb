@@ -12,5 +12,28 @@ ActiveAdmin.register Order do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  ActiveAdmin.register LineItem do
+    belongs_to :order
+    navigation_menu :order
+  end
+
+  menu label: "Заказы"
+
+  actions :all, except: [:new, :create, :destroy]
+
+  scope :all
+  scope :confirmed, default: true
+  scope "В обработке", :pending
+  scope :done
+  scope :declined
+
+  index do
+    selectable_column
+    column "Статус", :status
+    column "Дата создания", :created_at
+    column "Заказчик", :user, :email
+    column "Сумма заказа(руб.)", :total_price
+    actions
+  end
 
 end

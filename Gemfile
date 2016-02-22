@@ -25,6 +25,8 @@ gem 'slim'
 # Admin panel
 gem 'activeadmin', github: 'activeadmin'
 gem 'formtastic', github: 'justinfrench/formtastic'
+# Authourization solution
+gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

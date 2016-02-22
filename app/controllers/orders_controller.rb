@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     @orders = Order.where(user_id: current_user.id)
   end
 
-  def confirmation
+  def create
     @order = Order.new(order_params)
     @order.calculate_total_price
     @order.user_id = current_user.id

@@ -7,8 +7,12 @@ class Order < ApplicationRecord
 
   enum status: {not_confirmed: 0, confirmed: 1, declined: 2, pending: 3, done: 4}
 
+  scope :pending, -> { where(status: 3) }
+  scope :confirmed, -> { where(status: 1) }
+  scope :declined, -> { where(status: 2) }
+  scope :done, -> { where(status: 4) }
+
   def calculate_total_price
     self.total_price = line_items.inject(0) { |mem, elem| mem + Product.find(elem.product_id).price * elem.quantity }
   end
-
 end
