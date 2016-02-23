@@ -4,5 +4,5 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :product_attrs
 
-  validate :name, uniqueness: true, precense: true
+  validates :name, uniqueness: true, presence: true
 end

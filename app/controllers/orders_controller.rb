@@ -29,6 +29,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(line_items_attributes: [:product_id, :quantity])
+    params.require(:order).permit(line_items_attributes: [:product_attr_id, :quantity])
   end
 end

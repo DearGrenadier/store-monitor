@@ -2,3 +2,6 @@
  *= require bootstrap
  *= require_self
  */
+li {
+  list-style: none;
+}

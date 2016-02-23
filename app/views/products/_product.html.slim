@@ -2,8 +2,24 @@ tr
   td = product.name
   td
     = ff.select :product_attr_id, product.product_attrs.map { |prod_attr| [prod_attr.size.value, prod_attr.id] }
-  td = product.product_attrs.map(&:price)
-  td = product.product_attrs.map(&:amount)
+  td
+    ul
+      - product.product_attrs.map(&:price).each_with_index do |price, idx|
+        - if idx.zero?
+          li
+            = number_to_currency(price, delimiter: ' ', precision: 0, format: '%n')
+        - else
+          li.hidden
+            = number_to_currency(price, delimiter: ' ', precision: 0, format: '%n')
+  td
+    ul
+      - product.product_attrs.map(&:amount).each_with_index do |amount, idx|
+        - if idx.zero?
+          li
+            = amount
+        - else
+          li.hidden
+            = amount
   - if user_signed_in?
     td
       = ff.text_field :quantity
