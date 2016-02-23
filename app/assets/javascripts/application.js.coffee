@@ -5,6 +5,7 @@
 #= require_tree .
 
 $(document).ready ->
+  # change price and current amount of item, related on size
   $('select').change ->
     values = []
     $(this.options).each ->
@@ -19,3 +20,7 @@ $(document).ready ->
     amountTd = parent.next().next()
     amountTd.find('li:not(.hidden)').addClass('hidden')
     $(amountTd.find('li')[idx]).removeClass('hidden')
+
+  # clear amount inpunt on click
+  $('span.glyphicon').click ->
+    $(this).parent().prev().find('input').val(0)

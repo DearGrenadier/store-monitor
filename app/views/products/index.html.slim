@@ -7,12 +7,12 @@
           br
       table.table.table-striped.table-bordered
         thead
-          th Наименование
-          th Размер
-          th Цена за еденицу(руб.)
-          th Наличие
+          th.text-center Наименование
+          th.text-center Размер
+          th.text-center Цена за ед.(руб.)
+          th.text-center Наличие
           - if user_signed_in?
-            th Количество
+            th.text-center Количество
         tbody
           - @products.each do |product|
             - line_item = LineItem.new
