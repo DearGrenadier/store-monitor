@@ -1,8 +1,9 @@
 tr
   td = product.name
-  td = product.price
-  td = product.quantity
+  td
+    = ff.select :product_attr_id, product.product_attrs.map { |prod_attr| [prod_attr.size.value, prod_attr.id] }
+  td = product.product_attrs.map(&:price)
+  td = product.product_attrs.map(&:amount)
   - if user_signed_in?
     td
-      = ff.hidden_field :product_id
       = ff.text_field :quantity
