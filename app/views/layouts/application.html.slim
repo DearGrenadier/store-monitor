@@ -14,14 +14,16 @@ html
               = link_to 'Склад', root_path, class: 'navbar-brand'
             .collapse.navbar-collapse
               ul.nav.navbar-nav
-                li
-                  = link_to 'Регистрация', new_user_registration_path
-                li
-                  = link_to 'Вход', new_user_session_path
-                li
-                  = link_to 'Выход', destroy_user_session_path, method: :delete
-                li
-                  = link_to 'Мои заказы', orders_path
-                li
-                  = current_user.try(:email)
+                - if user_signed_in?
+                  li
+                    = link_to 'Выход', destroy_user_session_path, method: :delete
+                  li
+                    = link_to 'Мои заказы', orders_path
+                  li
+                    = current_user.email
+                - else
+                  li
+                    = link_to 'Регистрация', new_user_registration_path
+                  li
+                    = link_to 'Вход', new_user_session_path
       = yield

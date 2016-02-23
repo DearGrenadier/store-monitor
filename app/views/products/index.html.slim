@@ -1,13 +1,16 @@
 .row
   = form_for @order, url: orders_path do |f|
     .col-md-8.col-md-offset-2
+      - if user_signed_in?
+        = f.submit 'Заказать', class: 'btn btn-primary btn-block'
+      br
       table.table.table-striped.table-bordered
         thead
           th Наименование
           th Цена за еденицу(руб.)
           th Наличие
-          th
-            = f.submit 'Заказать', class: 'btn btn-primary btn-block'
+          - if user_signed_in?
+            th Количество
         tbody
           - @products.each do |product|
             - line_item = LineItem.new(product_id: product.id)

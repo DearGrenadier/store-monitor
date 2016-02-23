@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222152040) do
+ActiveRecord::Schema.define(version: 20160222234809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(version: 20160222152040) do
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer  "product_id"
     t.integer  "order_id"
-    t.integer  "quantity",   default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "quantity",        default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "product_attr_id"
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
-    t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
+    t.index ["product_attr_id"], name: "index_line_items_on_product_attr_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -66,10 +66,25 @@ ActiveRecord::Schema.define(version: 20160222152040) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
+  create_table "product_attrs", force: :cascade do |t|
+    t.integer  "size_id"
+    t.integer  "product_id"
+    t.integer  "amount"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_attrs_on_product_id", using: :btree
+    t.index ["size_id"], name: "index_product_attrs_on_size_id", using: :btree
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.integer  "price"
-    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.string   "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
