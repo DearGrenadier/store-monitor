@@ -1,0 +1,12 @@
+tr
+  td.align-middle.col-md-4
+    = line_item.product_attr.product.name
+  td.align-middle.col-md-2
+    = line_item.product_attr.size.value
+  td.align-middle.col-md-2
+    = number_to_currency(line_item.product_attr.price, delimiter: ' ', precision: 0, format: '%n')
+  td.align-middle.col-md-2
+    = line_item.quantity
+  td.align-middle.col-md-2
+    = number_to_currency(line_item.quantity * line_item.product_attr.price, delimiter: ' ', precision: 0, format: '%n')
+

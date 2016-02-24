@@ -1,0 +1,24 @@
+.row
+  = form_for @order do |f|
+    = f.hidden_field :id
+    .col-md-10.col-md-offset-1
+      table.table.table-striped.table-bordered
+        thead
+          th.text-center Наименование
+          th.text-center Размер
+          th.text-center Цена за ед.(руб.)
+          th.text-center Количество
+          th.text-center Стоимость(руб.)
+        tbody
+          - @order.line_items.each do |line_item|
+            = render partial: 'order_row', locals: {line_item: line_item}
+          tr
+            td.text-right.bg-warning colspan='5'
+              h4
+                = "Общая стоимость - #{number_to_currency(@order.total_price, delimiter: ' ', precision: 0, format: '%n руб.')}"
+          tr
+            td colspan='5'
+              .col-md-2.col-md-offset-8.text-right
+                = link_to 'Отклонить', root_path, class: 'btn btn-warning text-right'
+              .col-md-2
+                = f.submit 'Подтвердить', class: 'btn btn-success text-right'

@@ -20,3 +20,7 @@ li {
 select option {
   text-align: center;
 }
+
+.pointer {
+  cursor: pointer;
+}

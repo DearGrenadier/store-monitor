@@ -1,9 +1,9 @@
 tr
-  td
-    = order.created_at
-  td
-    = order.total_price
-  td
+  td.align-middle
+    = order.created_at.strftime("%H:%M  %d-%m-%y")
+  td.align-middle
+    = number_to_currency(order.total_price, delimiter: ' ', precision: 0, format: '%n')
+  td.align-middle
     = order.status
-  td
+  td.text-center
     = link_to 'Подробнее', order_path(order.id), class: 'btn btn-info'

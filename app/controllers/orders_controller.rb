@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id).where.not(status: :not_confirmed).order(created_at: :desc)
   end
 
   def create
@@ -19,8 +19,8 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:order][:id])
     @order.line_items.each do |line_item|
-      new_quantity = line_item.product.quantity - line_item.quantity
-      line_item.product.update(quantity: new_quantity)
+      new_amount = line_item.product_attr.amount - line_item.quantity
+      line_item.product_attr.update(amount: new_amount)
     end
     @order.confirmed!
     redirect_to root_path

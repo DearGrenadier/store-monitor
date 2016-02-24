@@ -1,9 +1,9 @@
 .row
-  = form_for @order, url: orders_path do |f|
+  = form_for @order do |f|
     .col-md-10.col-md-offset-1
       - if user_signed_in?
         .col-md-3.col-md-offset-9
-          = f.submit 'Заказать', class: 'btn btn-primary btn-block'
+          = f.submit 'Оформить', class: 'btn btn-primary btn-block'
           br
       table.table.table-striped.table-bordered
         thead

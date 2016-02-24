@@ -13,6 +13,6 @@ class Order < ApplicationRecord
   scope :done, -> { where(status: 4) }
 
   def calculate_total_price
-    self.total_price = line_items.inject(0) { |mem, elem| mem + elem.product_attrs.price * elem.product_attrs.amount }
+    self.total_price = line_items.inject(0) { |mem, elem| mem + elem.product_attr.price * elem.quantity }
   end
 end
