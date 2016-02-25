@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :profiles, only: [:edit, :update]
   resources :line_items, only: [:create]
   resources :orders, except: [:new, :destroy, :edit]
   resources :products, only: [:index, :create]

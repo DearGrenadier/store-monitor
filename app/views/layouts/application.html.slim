@@ -8,22 +8,30 @@ html
   body
     .container
       .row
-        nav.navbar.navbar-default
+        nav.navbar.navbar-default style="margin-top: 5px"
           .container-fluid
             .navbar-header
-              = link_to 'Склад', root_path, class: 'navbar-brand'
-            .collapse.navbar-collapse
-              ul.nav.navbar-nav
-                - if user_signed_in?
-                  li
-                    = link_to 'Выход', destroy_user_session_path, method: :delete
-                  li
-                    = link_to 'Мои заказы', orders_path
-                  li
-                    = current_user.email
-                - else
-                  li
-                    = link_to 'Регистрация', new_user_registration_path
-                  li
-                    = link_to 'Вход', new_user_session_path
+              = link_to root_path, class: 'navbar-brand', style: 'padding-top: 5px;' do
+                = image_tag 'logo.png'
+            ul.nav.navbar-nav.navbar-right
+              - if user_signed_in?
+                li
+                  = link_to 'Мои заказы', orders_path
+                li
+                  = link_to 'Профиль', edit_profile_path(current_user.id)
+                li
+                  = link_to 'Выход', destroy_user_session_path, method: :delete
+              - else
+                li
+                  = link_to 'Регистрация', new_user_registration_path
+                li
+                  = link_to 'Вход', new_user_session_path
+        - if flash.present?
+          - flash.each do |name, msg|
+            - if name == "notice"
+              = render partial: 'flashes/notice', locals: {message: msg}
+            - elsif name == "alert"
+              = render partial: 'flashes/alert', locals: {message: msg}
+            - elsif name == "error"
+              = render partial: 'flashes/error', locals: {message: msg}
       = yield
