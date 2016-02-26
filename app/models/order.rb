@@ -15,4 +15,11 @@ class Order < ApplicationRecord
   def calculate_total_price
     self.total_price = line_items.inject(0) { |mem, elem| mem + elem.product_attr.price * elem.quantity }
   end
+
+  def check_amounts
+    line_items.each do |l_i|
+      return false if l_i.quantity > l_i.product_attr.amount
+    end
+    true
+  end
 end

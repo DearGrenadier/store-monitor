@@ -7,7 +7,7 @@
       .form-group
         label
           | Пароль
-        = f.password_field :password, class: 'form-control', autocomplete: 'off'
+        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'Пароль'
       - if devise_mapping.rememberable?
         .form-group
           .checkbox

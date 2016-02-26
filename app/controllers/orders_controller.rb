@@ -7,9 +7,22 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.calculate_total_price
-    @order.user_id = current_user.id
-    @order.save!
+    if @order.line_items.empty?
+      flash[:alert] = "Не выбрана ни одна из позиций"
+      redirect_to :back
+    else
+      if @order.check_amounts
+        @order.calculate_total_price
+        @order.user_id = current_user.id
+        unless @order.save
+          flash[:error] = @order.errors.full_messages.join('. ')
+          redirect_to :back
+        end
+      else
+        flash[:alert] = "Превышено количество одной из позиций"
+        redirect_to :back
+      end
+    end
   end
 
   def show
@@ -23,7 +36,13 @@ class OrdersController < ApplicationController
       line_item.product_attr.update(amount: new_amount)
     end
     @order.confirmed!
+    flash[:notice] = 'Заказ успешно создан и принят на обработку'
     redirect_to root_path
+  end
+
+  def accept
+    @order = Order.find(params[:order_id])
+    @order.pending!
   end
 
   private

@@ -9,6 +9,11 @@ class ProductsController < ApplicationController
     redirect_to :back
   end
 
+  def update
+    @product = Product.update!(product_params)
+    redirect_to :back
+  end
+
   private
 
   def product_params

@@ -19,10 +19,10 @@
           | Новый пароль
           em
             = " (8 #{@minimum_password_length} символов минимум)"
-        = f.password_field :password, class: 'form-control', autocomplete: 'off'
+        = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'Пароль'
       .form-group
         label
           | Подтверждение пароля
-        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off'
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', 'Подтверждение пароля'
       .form-group
         = f.submit 'Обновить', class: 'btn btn-info'

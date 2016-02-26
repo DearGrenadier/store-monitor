@@ -1,0 +1,26 @@
+h1
+  | Новый заказ
+h3
+  = "от #{@order.user.organization}(моб. тел. #{@order.user.phone_number})"
+h5
+  = "Общая стоимость заказа: #{number_to_currency(@order.total_price, delimiter: ' ', precision: 0, format: '%n')}р."
+h3
+  = link_to 'Подтвердить обработку заказа', order_accept_path(@order.id)
+table
+  thead
+    th
+      td
+        | Наименование
+      td
+        | Размер
+      td
+        | Количество
+  tbody
+    - @order.line_items.each do |l_i|
+      tr
+        td
+          = l_i.product_attr.product.name
+        td
+          = l_i.product_attr.size.value
+        td
+          = l_i.quantity

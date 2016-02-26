@@ -1,29 +1,12 @@
 ActiveAdmin.register Order do
-
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-  ActiveAdmin.register LineItem do
-    belongs_to :order
-    navigation_menu :order
-  end
-
   menu label: "Заказы"
 
+  config.filters = false
   actions :all, except: [:new, :create, :destroy]
 
   scope :all
   scope :confirmed, default: true
-  scope "В обработке", :pending
+  scope :pending
   scope :done
   scope :declined
 
@@ -31,14 +14,30 @@ ActiveAdmin.register Order do
     selectable_column
     column "Статус", :status
     column "Дата создания", :created_at
-    column "Заказчик", :user, :email
+    column('Заказчик') { |o| o.user.organization }
     column "Сумма заказа(руб.)", :total_price
     actions
   end
 
   show do
     attributes_table do
-      render 'show'
+      row :status
+      row :total_price
+      row :created_at
+      row('Организация') { |o| o.user.organization }
+      row('Моб. телефон') { |o| o.user.phone_number }
+      table_for order.line_items do
+        column('Наименование') { |l_i| l_i.product_attr.product.name }
+        column('Размер') { |l_i| l_i.product_attr.size.value }
+        column('Количество') { |l_i| l_i.quantity }
+      end
     end
+  end
+
+  form do |f|
+   inputs 'Заказ' do
+     input :status
+   end
+   actions
   end
 end
