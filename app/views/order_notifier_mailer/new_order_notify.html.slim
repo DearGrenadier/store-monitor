@@ -5,15 +5,15 @@ h3
 h5
   = "Общая стоимость заказа: #{number_to_currency(@order.total_price, delimiter: ' ', precision: 0, format: '%n')}р."
 h3
-  = link_to 'Подтвердить обработку заказа', order_accept_path(@order.id)
+  = link_to 'Подтвердить обработку заказа', order_accept_url(@order.id)
 table
   thead
-    th
-      td
+    tr
+      th
         | Наименование
-      td
+      th
         | Размер
-      td
+      th
         | Количество
   tbody
     - @order.line_items.each do |l_i|

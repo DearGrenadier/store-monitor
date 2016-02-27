@@ -27,10 +27,12 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'formtastic', github: 'justinfrench/formtastic'
 # Authourization solution
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
+  gem 'mailcatcher'
   gem 'rspec-rails', '~> 3.0'
 end
 

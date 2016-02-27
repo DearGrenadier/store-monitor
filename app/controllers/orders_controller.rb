@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
       line_item.product_attr.update(amount: new_amount)
     end
     @order.confirmed!
+    OrderNotifierMailer.new_order_notify(@order).deliver
     flash[:notice] = 'Заказ успешно создан и принят на обработку'
     redirect_to root_path
   end

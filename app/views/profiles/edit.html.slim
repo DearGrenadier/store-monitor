@@ -23,6 +23,6 @@
       .form-group
         label
           | Подтверждение пароля
-        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', 'Подтверждение пароля'
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: 'Подтверждение пароля'
       .form-group
         = f.submit 'Обновить', class: 'btn btn-info'
