@@ -1,5 +1,15 @@
 ru:
   activerecord:
+    models:
+      user:
+        one: 'Пользователь'
+        other: 'Пользователи'
+    attributes:
+      user:
+        phone_number: 'Моб. номер'
+        organization: 'Организация'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
     errors:
       models:
         user:
@@ -11,8 +21,11 @@ ru:
               not_found: 'не принадлежит ни одному из пользователей'
             password:
               blank: 'не может быть пустым'
+              too_short: 'должне быть как минимум 8 символов'
+            password_confirmation:
+              confirmation: 'не совпадет с паролем'
             phone_number:
-              wrong_length: 'должен быть длинной 9 цифр'
+              wrong_length: 'должен быть длинной 9 символов'
               taken: 'уже зарегистрирован'
               blank: 'не может быть пустым'
               not_a_number: 'должен быть числовым'
@@ -27,3 +40,5 @@ ru:
       user:
         signed_out: 'Вы успешно разлогинились'
         signed_in: 'Вы успешно авторизировались'
+      admin_user:
+        signed_in: 'Вы успешно авторизировались как админ'
