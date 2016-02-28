@@ -15,6 +15,7 @@ ActiveAdmin.register Order do
     column "Статус", :status
     column "Дата создания", :created_at
     column('Заказчик') { |o| o.user.organization }
+    column('Моб. номер') { |o| o.user.phone_number }
     column "Сумма заказа(руб.)", :total_price
     actions
   end

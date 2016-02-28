@@ -1,9 +1,22 @@
 ru:
+  time:
+    formats:
+      long:
+        "%H:%M %d-%m-%Y"
   activerecord:
     models:
       user:
         one: 'Пользователь'
         other: 'Пользователи'
+      product:
+        one: 'Товар'
+        other: 'Товары'
+      product_attr:
+        one: 'Атрибут зазказа'
+        other: 'Атрибуты заказа'
+      order:
+        one: 'Заказ'
+        other: 'Заказы'
     attributes:
       user:
         phone_number: 'Моб. номер'
