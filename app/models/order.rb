@@ -7,6 +7,8 @@ class Order < ApplicationRecord
 
   enum status: {not_confirmed: 0, confirmed: 1, declined: 2, pending: 3, done: 4}
 
+  after_update :check_if_decline
+
   scope :pending, -> { where(status: 3) }
   scope :confirmed, -> { where(status: 1) }
   scope :declined, -> { where(status: 2) }
@@ -21,5 +23,17 @@ class Order < ApplicationRecord
       return false if l_i.quantity > l_i.product_attr.amount
     end
     true
+  end
+
+  private
+
+  def check_if_decline
+    if status == "declined"
+      line_items.each do |l_i|
+        current_amount = l_i.product_attr.amount
+        new_amount = current_amount + l_i.quantity
+        l_i.product_attr.update!(amount: new_amount)
+      end
+    end
   end
 end
