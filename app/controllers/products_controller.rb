@@ -10,13 +10,14 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.update!(product_params)
+    @product = Product.find(params[:id])
+    @product.update!(product_params)
     redirect_to :back
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, product_attrs_attributes: [:size_id, :price, :amount])
+    params.require(:product).permit(:name, product_attrs_attributes: [:id, :size_id, :price, :amount])
   end
 end
