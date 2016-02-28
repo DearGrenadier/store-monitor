@@ -13,6 +13,7 @@ html
             .navbar-header
               = link_to root_path, class: 'navbar-brand', style: 'padding-top: 5px;' do
                 = image_tag 'logo.png'
+              span.phone +375 29 3056675
             ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
                 li

@@ -24,3 +24,10 @@ select option {
 .pointer {
   cursor: pointer;
 }
+
+.phone {
+  line-height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #777;
+}
