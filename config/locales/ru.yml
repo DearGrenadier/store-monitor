@@ -1,0 +1,29 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'не может быть пустым'
+              taken: 'уже используется'
+              invalid: 'не валидный'
+              not_found: 'не принадлежит ни одному из пользователей'
+            password:
+              blank: 'не может быть пустым'
+            phone_number:
+              wrong_length: 'должен быть длинной 9 цифр'
+              taken: 'уже зарегистрирован'
+              blank: 'не может быть пустым'
+              not_a_number: 'должен быть числовым'
+            organization:
+              blank: 'не может быть пустой'
+              too_short: 'должна быть как минимум 3 символа'
+  devise:
+    failure:
+      user:
+        not_found_in_database: "Пользователь с таким email'ом или паролем не найден"
+    sessions:
+      user:
+        signed_out: 'Вы успешно разлогинились'
+        signed_in: 'Вы успешно авторизировались'

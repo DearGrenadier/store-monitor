@@ -44,12 +44,22 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle}
 namespace :deploy do
 
   desc 'Configure nginx files'
-    task :configure_nginx do
-      on roles(:web), in: :sequence, wait: 2 do
-        execute "sudo cp #{current_path}/nginx/nginx_conf.conf /etc/nginx/sites-enabled/ && sudo /etc/init.d/nginx reload"
+  task :configure_nginx do
+    on roles(:web), in: :sequence, wait: 2 do
+      execute "sudo cp #{current_path}/nginx/nginx_conf.conf /etc/nginx/sites-enabled/ && sudo /etc/init.d/nginx reload"
     end
   end
 
+  desc 'Runs rake db:seed'
+  task :seed => [:set_rails_env] do
+    on primary fetch(:migration_role) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "db:seed"
+        end
+      end
+    end
+  end
   after :publishing, :configure_nginx
 
   after :publishing, :restart

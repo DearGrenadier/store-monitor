@@ -1,11 +1,11 @@
-server '104.154.67.233',
-         user: 'nazarchuk',
+server '46.101.206.241',
+         user: 'deployer',
          roles: %w{web app db}
 
 set :rails_env, 'production'
 ask :branch, 'master'
 
-set :deploy_to, '/srv/projects/notifyninja'
+set :deploy_to, '/srv/projects/store-monitor'
 
 namespace :deploy do
 
@@ -37,5 +37,4 @@ namespace :deploy do
       invoke 'unicorn:stop'
     end
   end
-
 end
