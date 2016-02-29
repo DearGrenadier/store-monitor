@@ -2,6 +2,7 @@ ActiveAdmin.register Order do
   menu label: "Заказы"
 
   config.filters = false
+  permit_params :status
   actions :all, except: [:new, :create, :destroy]
 
   scope :all
