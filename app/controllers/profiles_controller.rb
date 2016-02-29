@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    if user_params[:password]
+    if user_params[:password].empty?
       if @user.update(user_params)
         sign_in @user, bypass: true
         flash[:notice] = "Профиль был успешно обновлен"
