@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all.order(:name)
+    @products = Product.all.sort { |a, b| a.product_attrs.first.price <=> a.product_attrs.first.price }
     @order = Order.new
   end
 
