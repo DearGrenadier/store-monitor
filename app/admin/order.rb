@@ -13,7 +13,7 @@ ActiveAdmin.register Order do
 
   index do
     selectable_column
-    column "Статус", :status
+    column "Статус", :translate_status
     column "Дата создания", :created_at
     column('Заказчик') { |o| o.user.organization }
     column('Моб. номер') { |o| o.user.phone_number }
@@ -23,9 +23,9 @@ ActiveAdmin.register Order do
 
   show do
     attributes_table do
-      row :status
-      row :total_price
-      row :created_at
+      row('Статус') { |o| o.translate_status }
+      row('Общая стоимость') { |o| o.total_price }
+      row('Дата создания') { |o| o.created_at }
       row('Организация') { |o| o.user.organization }
       row('Моб. телефон') { |o| o.user.phone_number }
       table_for order.line_items do
@@ -38,7 +38,7 @@ ActiveAdmin.register Order do
 
   form do |f|
    inputs 'Заказ' do
-     input :status
+     input :status, label: 'Статус'
    end
    actions
   end

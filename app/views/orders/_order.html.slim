@@ -4,6 +4,6 @@ tr
   td.align-middle
     = number_to_currency(order.total_price, delimiter: ' ', precision: 0, format: '%n')
   td.align-middle
-    = translate_status(order.status)
+    = order.translate_status
   td.text-center
     = link_to 'Подробнее', order_path(order.id), class: 'btn btn-info'

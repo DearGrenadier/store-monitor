@@ -6,7 +6,7 @@ h5
   = "Общая стоимость заказа: #{number_to_currency(@order.total_price, delimiter: ' ', precision: 0, format: '%n')}р."
 h3
   = link_to 'Подтвердить обработку заказа', order_accept_url(@order.id)
-table
+table border='1'
   thead
     tr
       th

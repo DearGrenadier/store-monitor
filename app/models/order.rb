@@ -25,6 +25,19 @@ class Order < ApplicationRecord
     true
   end
 
+  def translate_status
+    case status
+    when 'confirmed'
+      'Подтвержден'
+    when 'pending'
+      'В обработке'
+    when 'done'
+      'Выполнен'
+    when 'declined'
+      'Откланен'
+    end
+  end
+
   private
 
   def check_if_decline
