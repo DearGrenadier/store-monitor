@@ -35,6 +35,8 @@ class Order < ApplicationRecord
       'Выполнен'
     when 'declined'
       'Откланен'
+    when 'not_confirmed'
+      'Не подтвержден'
     end
   end
 
