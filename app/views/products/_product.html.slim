@@ -2,7 +2,7 @@ tr
   td.align-middle.col-md-4
       = product.name
   td.col-md-2.text-center
-    = ff.select :product_attr_id, product.product_attrs.map { |prod_attr| [prod_attr.size.value, prod_attr.id] }.sort { |a, b| a.first <=> b.first }, {}, class: 'form-control input-sm'
+    = ff.select :product_attr_id, product.product_attrs.map { |prod_attr| [prod_attr.size.value, prod_attr.id] }.sort { |a, b| a.first.delete('x') <=> b.first.delete('x') }, {}, class: 'form-control input-sm'
   td.col-md-2
     ul.align-middle.ul-center
       - product.product_attrs.map(&:price).each_with_index do |price, idx|
