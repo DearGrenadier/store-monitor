@@ -48,3 +48,4 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
 end
+
