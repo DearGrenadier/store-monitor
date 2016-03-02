@@ -4,7 +4,7 @@
 #= require bootstrap
 #= require_tree .
 
-$(document).ready ->
+$(document).on 'ready page:load', ->
   # change price and current amount of item, related on size
   $('select').change ->
     values = []
