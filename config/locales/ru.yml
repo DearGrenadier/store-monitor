@@ -1,5 +1,4 @@
 ru:
-  l: 'ал'
   time:
     formats:
       long:
@@ -51,6 +50,7 @@ ru:
       user:
         not_found_in_database: "Пользователь с таким email'ом или паролем не найден"
         invalid: "Пользователь с таким email'ом или паролем не найден"
+        unauthenticated: 'Необходимо сперва авторизироваться'
       already_authenticated: "Вы уже авторизированы"
     sessions:
       user:
