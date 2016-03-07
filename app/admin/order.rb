@@ -9,7 +9,7 @@ ActiveAdmin.register Order do
   scope -> { 'Подтвержденные' }, :confirmed, default: true
   scope -> { 'В обработке' }, :pending
   scope -> { 'Выполненные' }, :done
-  scope -> { 'Откланенные' }, :declined
+  scope -> { 'Отклоненные' }, :declined
 
   index do
     selectable_column

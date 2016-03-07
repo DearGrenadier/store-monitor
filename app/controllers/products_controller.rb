@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @products = Product.all.select { |p| p.product_attrs.first.size.value != '-' }
       .sort { |a, b| a.product_attrs.min_by(&:price).price <=> b.product_attrs.min_by(&:price).price } +
