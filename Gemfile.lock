@@ -18,6 +18,17 @@ GIT
       sprockets (< 4)
 
 GIT
+  remote: git://github.com/audionerd/draper.git
+  revision: e816e0e5876b76c648c0928f1c3f2aa2c7a3d1f2
+  branch: rails5
+  specs:
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
+
+GIT
   remote: git://github.com/justinfrench/formtastic.git
   revision: 16d94ce8799b9243ed1206875d1506d1b6a727ce
   specs:
@@ -128,11 +139,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    draper (2.1.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     execjs (2.6.0)
@@ -324,7 +330,7 @@ DEPENDENCIES
   capistrano3-unicorn
   coffee-rails (~> 4.1.0)
   devise (= 4.0.0.rc1)
-  draper
+  draper!
   formtastic!
   jquery-rails
   mailcatcher
