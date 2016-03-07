@@ -5,14 +5,13 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :line_items, reject_if: proc { |attrs| attrs['quantity'].to_i.zero? }
 
-  enum status: {not_confirmed: 0, confirmed: 1, declined: 2, pending: 3, done: 4}
+  enum status: [:not_confirmed, :confirmed, :declined, :pending, :done]
 
   after_update :check_if_decline
 
-  scope :pending, -> { where(status: 3) }
-  scope :confirmed, -> { where(status: 1) }
-  scope :declined, -> { where(status: 2) }
-  scope :done, -> { where(status: 4) }
+  validates :status, presence: true
+
+  STATUSES = [['Подтвержден', :confirmed], ['В обработке', :pending], ['Отклонен', :declined], ['Выполнен', :done]]
 
   def calculate_total_price
     self.total_price = line_items.inject(0) { |mem, elem| mem + elem.product_attr.price * elem.quantity }

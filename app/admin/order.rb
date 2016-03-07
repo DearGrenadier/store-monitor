@@ -5,11 +5,11 @@ ActiveAdmin.register Order do
   permit_params :status
   actions :all, except: [:new, :create, :destroy]
 
-  scope :all
-  scope :confirmed, default: true
-  scope :pending
-  scope :done
-  scope :declined
+  scope -> { 'Все' }, :all
+  scope -> { 'Подтвержденные' }, :confirmed, default: true
+  scope -> { 'В обработке' }, :pending
+  scope -> { 'Выполненные' }, :done
+  scope -> { 'Откланенные' }, :declined
 
   index do
     selectable_column
@@ -38,7 +38,7 @@ ActiveAdmin.register Order do
 
   form do |f|
    inputs 'Заказ' do
-     input :status, label: 'Статус'
+     input :status, as: :select, collection: Order::STATUSES, label: 'Статус'
    end
    actions
   end
