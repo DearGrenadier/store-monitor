@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta2', '< 5.1'
+gem 'rails', '5.0.0.beta2'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use Unicorn as the app server
@@ -28,6 +28,8 @@ gem 'formtastic', github: 'justinfrench/formtastic'
 # Authourization solution
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git'
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'draper'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

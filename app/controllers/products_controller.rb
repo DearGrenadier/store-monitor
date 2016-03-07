@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all.select { |p| p.product_attrs.first.size.value != '-' } .sort { |a,b| a.product_attrs.min_by(&:price).price <=> b.product_attrs.min_by(&:price).price } + Product.all.select { |p| p.product_attrs.first.size.value == '-' }
+    @products = Product.all.select { |p| p.product_attrs.first.size.value != '-' }
+      .sort { |a, b| a.product_attrs.min_by(&:price).price <=> b.product_attrs.min_by(&:price).price } +
+      Product.all.select { |p| p.product_attrs.first.size.value == '-' }
+    @products = ProductDecorator.decorate_collection(@products)
     @order = Order.new
   end
 
