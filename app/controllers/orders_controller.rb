@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = Order.where(user_id: current_user.id).where.not(status: :not_confirmed).order(created_at: :desc)
+    @orders = current_user.orders.where.not(status: :not_confirmed).order(created_at: :desc)
   end
 
   def create

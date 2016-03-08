@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   menu label: "Пользователи"
   config.filters = false
-  actions :all, except: [:edit, :update]
+  actions :all, except: [:edit, :update, :new, :create, :show]
 
   index do
     selectable_column

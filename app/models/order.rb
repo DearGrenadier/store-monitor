@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :line_items, dependent: :destroy
+  has_many :line_items, dependent: :delete
   has_many :products, through: :line_items
 
   accepts_nested_attributes_for :line_items, reject_if: proc { |attrs| attrs['quantity'].to_i.zero? }
