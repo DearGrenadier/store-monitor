@@ -30,12 +30,14 @@ gem 'cancancan', '~> 1.13', '>= 1.13.1'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'addressable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'mailcatcher'
   gem 'rspec-rails', '~> 3.0'
+  gem 'bullet'
 end
 
 group :development do

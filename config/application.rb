@@ -13,5 +13,6 @@ module StoreMonitor
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ru
     config.time_zone = 'Minsk'
+    config.autoload_paths << Rails.root.join('lib/*.rb')
   end
 end

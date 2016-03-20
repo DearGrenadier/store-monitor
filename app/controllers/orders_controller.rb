@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
       if @order.check_amounts
         @order.calculate_total_price
         @order.user_id = current_user.id
-        unless @order.save
+        if @order.save
+          
+        else
           flash[:error] = @order.errors.full_messages.join('. ')
           redirect_to :back
         end
@@ -51,5 +53,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(line_items_attributes: [:product_attr_id, :quantity])
+  end
+
+  def send_sms
+    SMSSender.send_message if current_user.alert
   end
 end
