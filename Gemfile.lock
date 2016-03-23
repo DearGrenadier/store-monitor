@@ -18,6 +18,15 @@ GIT
       sprockets (< 4)
 
 GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: 1002b14aee62d4360c383ae1f14f5b5b72e76e2a
+  branch: 0-17-stable
+  specs:
+    kaminari (0.17.0.alpha)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/audionerd/draper.git
   revision: e816e0e5876b76c648c0928f1c3f2aa2c7a3d1f2
   branch: rails5
@@ -163,9 +172,6 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     kgio (2.10.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -333,6 +339,7 @@ DEPENDENCIES
   draper!
   formtastic!
   jquery-rails
+  kaminari!
   mailcatcher
   pg (~> 0.18.4)
   pry
