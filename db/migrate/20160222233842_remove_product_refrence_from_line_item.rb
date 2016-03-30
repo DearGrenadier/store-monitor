@@ -1,4 +1,4 @@
-class RemoveProductRefrenceFromLineItem < ActiveRecord::Migration[5.0]
+class RemoveProductRefrenceFromLineItem < ActiveRecord::Migration
   def change
     remove_column :line_items, :product_id
   end

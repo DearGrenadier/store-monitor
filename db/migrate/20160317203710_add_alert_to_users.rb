@@ -1,4 +1,4 @@
-class AddAlertToUsers < ActiveRecord::Migration[5.0]
+class AddAlertToUsers < ActiveRecord::Migration
   def change
     add_column :users, :alert, :boolean, default: true
   end

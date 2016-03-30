@@ -1,4 +1,4 @@
-class DeletePriceAndQuantityFromProduct < ActiveRecord::Migration[5.0]
+class DeletePriceAndQuantityFromProduct < ActiveRecord::Migration
   def change
     remove_column :products, :quantity
     remove_column :products, :price
