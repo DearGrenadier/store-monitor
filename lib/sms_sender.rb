@@ -4,12 +4,12 @@ require 'action_view'
 class SMSSender
   extend ActionView::Helpers::NumberHelper
 
-  URL = 'http://smsc.ru/sys/send.php{?query*}'
+  URL = 'http://smsc.ru/sys/send.php{?query*}'.freeze
 
   @smsc = YAML.load_file('config/smsc.yml')
-  @params = {query: { login: @smsc['credentials']['login'],
-             psw: @smsc['credentials']['password'],
-             phones: @smsc['recievers'].join(';') } }
+  @params = { query: { login: @smsc['credentials']['login'],
+                       psw: @smsc['credentials']['password'],
+                       phones: @smsc['recievers'].join(';') } }
 
   def self.send_message(user, order)
     @params[:query][:mes] = compasite_message(user, order)
@@ -30,6 +30,6 @@ class SMSSender
                   (#{line_item.product_attr.size.value})\n"
     end
     res.concat "Общая стоимость заказа - #{number_to_currency(order.total_price, delimiter: ' ',
-                                                              precision: 0, format: '%n руб.')}"
+                                                                                 precision: 0, format: '%n руб.')}"
   end
 end

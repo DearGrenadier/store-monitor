@@ -23,15 +23,15 @@ ActiveAdmin.register Order do
 
   show do
     attributes_table do
-      row('Статус') { |o| o.translate_status }
-      row('Общая стоимость') { |o| o.total_price }
-      row('Дата создания') { |o| o.created_at.strftime("%H:%M  %d-%m-%y") }
+      row('Статус', &:translate_status)
+      row('Общая стоимость', &:total_price)
+      row('Дата создания') { |o| o.created_at.strftime('%H:%M  %d-%m-%y') }
       row('Организация') { |o| o.user.organization }
       row('Моб. телефон') { |o| o.user.phone_number }
       table_for order.line_items do
         column('Наименование') { |l_i| l_i.product_attr.product.name }
         column('Размер') { |l_i| l_i.product_attr.size.value }
-        column('Количество') { |l_i| l_i.quantity }
+        column('Количество', &:quantity)
       end
     end
   end

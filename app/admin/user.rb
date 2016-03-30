@@ -15,16 +15,16 @@ ActiveAdmin.register User do
 
   show do
     attributes_table do
-      row('Email') { |u| u.email }
-      row('Моб. номер') { |u| u.phone_number }
-      row('Организация') { |u| u.organization }
+      row('Email', &:email)
+      row('Моб. номер', &:phone_number)
+      row('Организация', &:organization)
     end
   end
 
-  form do |f|
-   inputs 'Пользователь' do
-     input :alert, label: 'Уведомлять о заказах'
-   end
-   actions
+  form do |_f|
+    inputs 'Пользователь' do
+      input :alert, label: 'Уведомлять о заказах'
+    end
+    actions
   end
 end

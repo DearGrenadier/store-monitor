@@ -33,7 +33,7 @@ set :unicorn_config_path, -> { "#{fetch(:deploy_to)}/current/config/unicorn.rb" 
 
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
+set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -42,7 +42,6 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
 # set :keep_releases, 5
 
 namespace :deploy do
-
   desc 'Configure nginx files'
   task :configure_nginx do
     on roles(:web), in: :sequence, wait: 2 do
@@ -51,11 +50,11 @@ namespace :deploy do
   end
 
   desc 'Runs rake db:seed'
-  task :seed => [:set_rails_env] do
+  task seed: [:set_rails_env] do
     on primary fetch(:migration_role) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "db:seed"
+          execute :rake, 'db:seed'
         end
       end
     end
@@ -72,5 +71,4 @@ namespace :deploy do
       # end
     end
   end
-
 end

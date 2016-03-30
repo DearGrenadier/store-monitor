@@ -15,11 +15,11 @@ ActiveAdmin.register Product do
 
   show do
     attributes_table do
-      row('Наименование') { |p| p.name }
+      row('Наименование', &:name)
       table_for product.product_attrs do
         column('Размер') { |p_a| p_a.size.value }
-        column('Цена за ед.') { |p_a| p_a.price }
-        column('Наличие') { |p_a| p_a.amount }
+        column('Цена за ед.', &:price)
+        column('Наличие', &:amount)
       end
     end
   end

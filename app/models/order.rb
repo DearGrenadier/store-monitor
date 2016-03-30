@@ -57,7 +57,7 @@ class Order < ApplicationRecord
   private
 
   def check_if_decline
-    if status == "declined"
+    if status == 'declined'
       line_items.each do |l_i|
         current_amount = l_i.product_attr.amount
         new_amount = current_amount + l_i.quantity
