@@ -1,6 +1,8 @@
 ActiveAdmin.register User do
   menu label: "Пользователи"
   config.filters = false
+
+  permit_params :alert
   actions :all, except: [:new, :create, :show]
 
   index do

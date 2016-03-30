@@ -1,7 +1,7 @@
 class ProductDecorator < Draper::Decorator
   delegate_all
 
-  X = 'x'
+  X = 'x'.freeze
 
   def sorted
     object.product_attrs

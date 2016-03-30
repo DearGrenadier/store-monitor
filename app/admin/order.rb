@@ -25,7 +25,7 @@ ActiveAdmin.register Order do
     attributes_table do
       row('Статус') { |o| o.translate_status }
       row('Общая стоимость') { |o| o.total_price }
-      row('Дата создания') { |o| o.created_at }
+      row('Дата создания') { |o| o.created_at.strftime("%H:%M  %d-%m-%y") }
       row('Организация') { |o| o.user.organization }
       row('Моб. телефон') { |o| o.user.phone_number }
       table_for order.line_items do
@@ -36,10 +36,10 @@ ActiveAdmin.register Order do
     end
   end
 
-  form do |f|
-   inputs 'Заказ' do
-     input :status, as: :select, collection: Order::STATUSES, label: 'Статус'
-   end
-   actions
+  form do |order_form|
+    order_form.inputs 'Заказ' do
+      order_form.input :status, as: :select, collection: Order::STATUSES, label: 'Статус'
+    end
+    actions
   end
 end

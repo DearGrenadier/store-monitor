@@ -11,7 +11,8 @@ class Order < ApplicationRecord
 
   validates :status, presence: true
 
-  STATUSES = [['Подтвержден', :confirmed], ['В обработке', :pending], ['Отклонен', :declined], ['Выполнен', :done]]
+  STATUSES = [['Подтвержден', :confirmed], ['В обработке', :pending], ['Отклонен', :declined],
+              ['Выполнен', :done]].freeze
 
   def calculate_total_price
     self.total_price = line_items.inject(0) { |mem, elem| mem + elem.product_attr.price * elem.quantity }
@@ -22,6 +23,20 @@ class Order < ApplicationRecord
       return false if l_i.quantity > l_i.product_attr.amount
     end
     true
+  end
+
+  def lock_products
+    line_items.each do |line_item|
+      line_item.product_attr.update(amount: line_item.product_attr.amount - line_item.quantity)
+    end
+  end
+
+  def confirmed!
+    update(status: :confirmed)
+    if user.alert
+      OrderNotifierMailer.new_order_notify(@order).deliver
+      SMSSender.send_message(current_user, @order)
+    end
   end
 
   def translate_status
