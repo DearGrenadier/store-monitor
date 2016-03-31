@@ -35,4 +35,8 @@ ActiveAdmin.register Product do
     end
     actions
   end
+
+  collection_action :csv, method: :get do
+    send_data ProductsCSVBuilder.build, filename: "products-#{Time.zone.today.strftime('%d-%m-%y')}.csv"
+  end
 end
