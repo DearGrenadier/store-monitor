@@ -34,8 +34,8 @@ class Order < ApplicationRecord
   def confirmed!
     update(status: :confirmed)
     if user.alert
-      OrderNotifierMailer.new_order_notify(@order).deliver
-      SMSSender.send_message(current_user, @order)
+      OrderNotifierMailer.new_order_notify(self).deliver
+      SMSSender.send_message(user, self)
     end
   end
 
