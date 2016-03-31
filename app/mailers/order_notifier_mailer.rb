@@ -1,7 +1,7 @@
 class OrderNotifierMailer < ApplicationMailer
-  default from: 'example@example.com'
+  default from: 'orders@bb-region.gq'
 
-  DEFAULT_RECIEVER = 'gitnazarchuk@gmail.com'.freeze
+  DEFAULT_RECIEVER = 'info@matrason.by'.freeze
 
   def new_order_notify(order)
     @order = order

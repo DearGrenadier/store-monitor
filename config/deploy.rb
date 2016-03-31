@@ -27,7 +27,8 @@ set :deploy_to, '/srv/projects/store-monitor'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/smsc.yml',
+                                                'config/admin.yml')
 
 set :unicorn_config_path, -> { "#{fetch(:deploy_to)}/current/config/unicorn.rb" }
 
