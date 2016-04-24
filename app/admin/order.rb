@@ -11,6 +11,12 @@ ActiveAdmin.register Order do
   scope -> { 'Выполненные' }, :done
   scope -> { 'Отклоненные' }, :declined
 
+  controller do
+    def scoped_collection
+      super.includes :user # prevents N+1 queries to your database
+    end
+  end
+
   index do
     selectable_column
     column "Статус", :translate_status
