@@ -295,7 +295,7 @@ DEPENDENCIES
   draper
   jquery-rails
   mailcatcher
-  pg (~> 0.18.4)
+  pg (= 0.18.4)
   pry
   rails (= 4.2.6)
   rails-assets-bootstrap!
