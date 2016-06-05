@@ -6,7 +6,7 @@ set :rvm_ruby_version, '2.3.0'
 set :rvm_roles, :all # default value
 
 set :application, 'store-monitor'
-set :repo_url, 'git@github.com:cosmosloth/store-monitor.git'
+set :repo_url, 'git@github.com:dimanazarchuk/store-monitor.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
