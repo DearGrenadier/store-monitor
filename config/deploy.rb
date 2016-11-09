@@ -60,6 +60,7 @@ namespace :deploy do
       end
     end
   end
+
   after :publishing, :configure_nginx
 
   after :publishing, :restart
