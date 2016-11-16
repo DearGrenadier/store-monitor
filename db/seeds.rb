@@ -1,6 +1,3 @@
-AdminUser.destroy_all
-Size.destroy_all
-
 ADMINS = YAML.load_file('config/admin.yml')['admins']
 SIZES = %w( - 60x120 70x140 80x160 80x180 80x186 80x190 80x200 90x190 90x200 120x190 120x195 120x200 140x190 140x195
             80x188 80x190 80x195 80x198 80x199 80x200 88x198 88x199 90x188 90x190 90x195 90x198 90x199 90x200
@@ -8,7 +5,7 @@ SIZES = %w( - 60x120 70x140 80x160 80x180 80x186 80x190 80x200 90x190 90x200 120
             180x200 ).freeze
 
 ADMINS.each do |login, password|
-  AdminUser.create!(email: login, password: password, password_confirmation: password)
+  AdminUser.find_or_create_by(email: login, password: password, password_confirmation: password)
 end
 
 SIZES.each do |size|
